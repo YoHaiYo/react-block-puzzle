@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 
 const App = () => {
@@ -77,6 +77,24 @@ const App = () => {
   const handleBlockSelect = (block) => {
     setSelectedBlock(block);
   };
+
+  // 키보드 이벤트 핸들러
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      const selected = tetrisBlocks.find(
+        (block) => block.hotkey === event.key.toUpperCase()
+      );
+      if (selected) {
+        setSelectedBlock(selected);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // 격자 셀에 호버할 때 호버 위치 표시하는 함수
   const handleCellHover = (event, targetRow, targetCol) => {
@@ -209,9 +227,7 @@ const App = () => {
                       backgroundColor:
                         value === 1 ? block.color : "transparent",
                     }}
-                  >
-                    {tetrisBlocks.block}
-                  </div>
+                  />
                 ))}
               </div>
             ))}
@@ -230,10 +246,8 @@ const App = () => {
         {highlightedCells.map(
           ([row, col]) => `
           .row:nth-child(${row + 1}) .cell:nth-child(${col + 1}) {
-           
             box-shadow: 0 0 0 3px #4872f4 inset;
             background-color: rgba(0, 0, 255, 0.2) !important;
-            
           }
         `
         )}
