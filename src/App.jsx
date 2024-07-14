@@ -19,6 +19,7 @@ const App = () => {
     {
       shape: [[1, 1, 1, 1]], // 직선 모양
       color: "#FFBF00",
+      hotkey: "Q",
     },
     {
       shape: [
@@ -26,6 +27,7 @@ const App = () => {
         [1, 1],
       ], // 정사각형 모양
       color: "#00BFFF",
+      hotkey: "W",
     },
     {
       shape: [
@@ -33,6 +35,7 @@ const App = () => {
         [0, 1, 1],
       ], // L 모양
       color: "#32CD32",
+      hotkey: "E",
     },
     {
       shape: [
@@ -40,6 +43,7 @@ const App = () => {
         [1, 1, 0],
       ], // 반대 L 모양
       color: "#FF1493",
+      hotkey: "R",
     },
     {
       shape: [
@@ -47,6 +51,7 @@ const App = () => {
         [0, 1, 0],
       ], // T 모양
       color: "#FF4500",
+      hotkey: "A",
     },
     {
       shape: [
@@ -55,6 +60,7 @@ const App = () => {
         [0, 1],
       ], // 번개 모양
       color: "#9400D3",
+      hotkey: "S",
     },
     {
       shape: [
@@ -63,6 +69,7 @@ const App = () => {
         [1, 0],
       ], // 반대 번개 모양
       color: "#FFD700",
+      hotkey: "D",
     },
   ];
 
@@ -182,6 +189,7 @@ const App = () => {
       </div>
       <div className="tetris-blocks">
         {/* 다양한 테트리스 블록 선택 가능 */}
+
         {tetrisBlocks.map((block, index) => (
           <div
             key={index}
@@ -190,6 +198,7 @@ const App = () => {
             }`} // 선택된 블록에만 selected 클래스 추가
             onClick={() => handleBlockSelect(block)} // 테트리스 블록 선택
           >
+            <h2>{block.hotkey}</h2>
             {block.shape.map((row, rowIndex) => (
               <div key={rowIndex} className="block-row">
                 {row.map((value, colIndex) => (
