@@ -223,8 +223,7 @@ const App = () => {
           .row:nth-child(${row + 1}) .cell:nth-child(${col + 1}) {
            
             box-shadow: 0 0 0 3px #4872f4 inset;
-            background-color: red; 
-            opacity: 0.5;
+            background-color: rgba(0, 0, 255, 0.2) !important;
             
           }
         `
